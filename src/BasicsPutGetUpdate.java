@@ -28,7 +28,7 @@ public class BasicsPutGetUpdate {
 	    String response = given().log().all().queryParam("key","qaclick123").header("Content-Type","application/json")
 	    .body(payload.Addplace()).when().post("maps/api/place/add/json")
 	    .then().assertThat().statusCode(200).body("scope", equalTo("APP"))
-		.header("serve  r", "Apache/2.4.52 (Ubuntu)").extract().asString();
+		.header("server", "Apache/2.4.52 (Ubuntu)").extract().asString();
       
 	  	System.out.println(response);
 	  	JsonPath js=new JsonPath(response); //for parsing Json
