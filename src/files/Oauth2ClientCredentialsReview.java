@@ -2,9 +2,12 @@ package files;
 
 import static io.restassured.RestAssured.given;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -24,11 +27,14 @@ public class Oauth2ClientCredentialsReview {
 
     @BeforeClass
     public void setup() {
-        String clientId = System.getenv("OAUTH_CLIENT_ID");
-        String clientSecret = System.getenv("OAUTH_CLIENT_SECRET");
-        if (clientId == null || clientSecret == null) {
-            throw new RuntimeException("OAUTH_CLIENT_ID and OAUTH_CLIENT_SECRET environment variables must be set");
+        Properties props = new Properties();
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+            props.load(is);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load config.properties", e);
         }
+        String clientId = props.getProperty("oauth.clientId");
+        String clientSecret = props.getProperty("oauth.clientSecret");
 
         String response = given()
                 .formParams("client_id", clientId)

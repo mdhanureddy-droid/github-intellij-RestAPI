@@ -47,7 +47,7 @@ public class ECommerceAPITestReview {
                 .param("productAddedBy", userId).param("productCategory", "fashion")
                 .param("productSubCategory", "shirts").param("productPrice", "11500")
                 .param("productDescription", "Lenova").param("productFor", "men")
-                .multiPart("productImage", new File("\\Users\\dhanunjaya.r\\Desktop\\AddAttachment.png"));
+                .multiPart("productImage", new File("testdata/AddAttachment.png"));
 
         String addProductResponse = reqAddProduct.when().post("/api/ecom/product/add-product")
                 .then().log().all().extract().response().asString();

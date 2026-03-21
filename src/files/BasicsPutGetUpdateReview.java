@@ -16,6 +16,7 @@ public class BasicsPutGetUpdateReview {
     @BeforeClass
     public void setup() {
         RestAssured.baseURI = "https://rahulshettyacademy.com";
+        RestAssured.useRelaxedHTTPSValidation();
     }
 
     @Test

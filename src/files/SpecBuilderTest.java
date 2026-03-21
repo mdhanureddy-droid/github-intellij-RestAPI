@@ -2,7 +2,6 @@ package files;
 
 import static io.restassured.RestAssured.given;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.testng.Assert;
@@ -36,21 +35,20 @@ public class SpecBuilderTest {
 
     @Test
     public void addPlace() {
-        AddPlace p = new AddPlace();
-        p.setAccuracy(50);
-        p.setAddress("29, side layout, cohen 09");
-        p.setLanguage("French-IN");
-        p.setPhoneNumber("(+91) 983 893 3937");
-        p.setWebsite("https://rahulshettyacademy.com");
-        p.setName("Frontline house");
-        List<String> myList = new ArrayList<String>();
-        myList.add("shoe park");
-        myList.add("shop");
-        p.setTypes(myList);
         Location l = new Location();
         l.setLat(-38.383494);
         l.setLng(33.427362);
-        p.setLocation(l);
+
+        AddPlace p = AddPlace.builder()
+                .accuracy(50)
+                .address("29, side layout, cohen 09")
+                .language("French-IN")
+                .phoneNumber("(+91) 983 893 3937")
+                .website("https://rahulshettyacademy.com")
+                .name("Frontline house")
+                .types(List.of("shoe park", "shop"))
+                .location(l)
+                .build();
 
         JsonPath jsonPath = given().spec(reqSpec)
                 .body(p)

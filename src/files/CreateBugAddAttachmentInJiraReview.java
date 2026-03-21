@@ -37,7 +37,7 @@ public class CreateBugAddAttachmentInJiraReview {
                         + "          \"key\": \"DEV\"\r\n"
                         + "       },\r\n"
                         + "       \"summary\": \"REST create bug 1.\",\r\n"
-                        + "       \"description\": [\"Creating of an issue using project keys and issue type names using the REST API\"],\r\n"
+                        + "       \"description\": {\"type\":\"doc\",\"version\":1,\"content\":[{\"type\":\"paragraph\",\"content\":[{\"type\":\"text\",\"text\":\"Creating of an issue using project keys and issue type names using the REST API\"}]}]},\r\n"
                         + "       \"issuetype\": {\r\n"
                         + "          \"name\": \"Bug\"\r\n"
                         + "       }\r\n"
