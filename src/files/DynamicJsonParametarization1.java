@@ -7,10 +7,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 
 public class DynamicJsonParametarization1 {
+
+    private static final Logger log = LogManager.getLogger(DynamicJsonParametarization1.class);
 
     @BeforeClass
     public void setup() {
@@ -20,17 +25,17 @@ public class DynamicJsonParametarization1 {
     @Test(dataProvider = "BooksData")
 
     public void addBook(String isbn, String aisle) {
-        String response = given().log().all().header("Content-Type", "application/json")
+        JsonPath jsonPath = given().log().all().header("Content-Type", "application/json")
                 .body(Payload.addBook(isbn, aisle))
                 .when()
                 .post("/Library/Addbook.php")
                 .then().log().all().statusCode(200)
-                .extract().response().asString();
-        JsonPath jsonPath = ReusableMethods.rawToJson(response);
-        String id = jsonPath.get("ID");
-        System.out.println(id);
+                .extract().response().jsonPath();
+        String id = jsonPath.getString("ID");
+        log.info("Book ID: {}", id);
 
         Assert.assertNotNull(id, "ID should not be null");
+        Assert.assertEquals(id, isbn + aisle, "ID should match isbn + aisle");
     }
 
     @DataProvider(name = "BooksData")

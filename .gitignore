@@ -19,9 +19,7 @@ pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
-release.properties
 dependency-reduced-pom.xml
-buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
@@ -34,6 +32,7 @@ build/
 
 # IDE
 .idea/
+.idea/*.xml
 *.iml
 *.iws
 *.ipr
@@ -50,13 +49,16 @@ tmp/
 *~.nib
 
 # Eclipse
-.metadata
 .recommenders
 RemoteSystemsTempFiles/
 
 # TestNG
 test-output/
 testng-results.xml
+
+# Allure Reports
+allure-results/
+allure-report/
 
 # OS
 .DS_Store
@@ -65,5 +67,6 @@ Thumbs.db
 # Credentials and sensitive data
 *.properties
 !src/main/resources/*.properties
+src/main/resources/config.properties
 credentials.json
 secrets.json

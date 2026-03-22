@@ -1,7 +1,4 @@
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
+package files;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -10,12 +7,22 @@ import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class DataDriven {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class DataDrivenReview {
+
+    private static final Logger logger = LogManager.getLogger(DataDrivenReview.class);
 
     public ArrayList<String> getData(String testcaseName, String sheetName) throws IOException {
         ArrayList<String> data = new ArrayList<String>();
 
-        FileInputStream fis = new FileInputStream("C://DHANUNJAYA//DHANUNJAYA LAPTOP//Automation Training//API Automation//demodata.xlsx");
+        FileInputStream fis = new FileInputStream("testdata/demodata.xlsx");
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
 
         int sheets = workbook.getNumberOfSheets();
@@ -37,7 +44,7 @@ public class DataDriven {
 
                     k++;
                 }
-                System.out.println(column);
+                logger.info("TestCases column index: {}", column);
 
                 while (rows.hasNext()) {
                     Row r = rows.next();
@@ -60,9 +67,9 @@ public class DataDriven {
     }
 
     public static void main(String[] args) throws IOException {
-        DataDriven d = new DataDriven();
+        DataDrivenReview d = new DataDrivenReview();
         ArrayList<String> data = d.getData("Purchase", "testdata");
-        System.out.println(data);
+        logger.info("Retrieved data: {}", data);
     }
 
 }
