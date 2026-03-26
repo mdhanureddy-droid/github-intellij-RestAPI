@@ -1,17 +1,22 @@
 package files;
 
+import lombok.extern.log4j.Log4j2;
+import org.testng.annotations.Test;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
+@Log4j2
 public class DataDrivenSampleReview {
 
-    public static void main(String[] args) throws IOException {
+    @Test
+    public void dataDrivenTest() throws IOException {
         DataDrivenReview d = new DataDrivenReview();
         ArrayList data = d.getData("Add Profile", "testdata");
-        System.out.println(data.get(0));
-        System.out.println(data.get(1));
-        System.out.println(data.get(2));
-        System.out.println(data.get(3));
+        log.info("{}", data.get(0));
+        log.info("{}", data.get(1));
+        log.info("{}", data.get(2));
+        log.info("{}", data.get(3));
     }
 
 }
