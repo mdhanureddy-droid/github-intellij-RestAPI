@@ -65,11 +65,8 @@ allure-report/
 Thumbs.db
 
 # Credentials and sensitive data
+*.properties
+!src/main/resources/*.properties
 src/main/resources/config.properties
 credentials.json
 secrets.json
-
-# Old source (to be removed after migration)
-src/files/
-src/Lombok/
-src/resources/
