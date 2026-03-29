@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-  <test name="Test">
+<suite name="REST API Test Suite">
+
+  <listeners>
+    <listener class-name="com.restapi.listeners.TestListener"/>
+  </listeners>
+
+  <test name="Places API Tests">
     <classes>
-      <class name="files.BasicsPutGetUpdateReview"/>
+      <class name="com.restapi.tests.places.StaticFilePostMethodBeforeMethod"/>
+      <class name="com.restapi.tests.places.BasicsPutGetUpdate"/>
+      <class name="com.restapi.tests.places.SpecBuilderTest"/>
+      <class name="com.restapi.tests.places.SerializeTest"/>
     </classes>
   </test>
+
+  <test name="JSON Parse Tests">
+    <classes>
+      <class name="com.restapi.tests.jsonparse.ComplexJsonParse"/>
+      <class name="com.restapi.tests.jsonparse.SumValidations"/>
+    </classes>
+  </test>
+
+  <test name="Library Tests">
+    <classes>
+      <class name="com.restapi.tests.library.DynamicJsonParametarization"/>
+      <class name="com.restapi.tests.library.DataDrivenSample"/>
+    </classes>
+  </test>
+
 </suite>
