@@ -3,7 +3,7 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-      <class name="files.BasicsPutGetUpdateReview"/>
+      <class name="places.BasicsPutGetUpdate"/>
     </classes>
   </test>
 </suite>
