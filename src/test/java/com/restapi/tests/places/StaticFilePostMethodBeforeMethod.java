@@ -1,7 +1,7 @@
 package com.restapi.tests.places;
 
 import com.restapi.utils.ConfigReader;
-import com.restapi.utils.ExcelDataReader;
+import main.java.com.restapi.utils.ExcelDataReaderReview;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lombok.extern.log4j.Log4j2;
@@ -40,7 +40,7 @@ public class StaticFilePostMethodBeforeMethod {
     public void beforeMethod(ITestResult result) throws IOException {
         String methodName = result.getMethod().getMethodName();
         if (testData == null) {
-            Map<String, String> excelData = new ExcelDataReader().getDataAsMap("AddPlace", "testdata");
+            Map<String, String> excelData = new ExcelDataReaderReview().getDataAsMap("AddPlace", "testdata");
             testData = new HashMap<>();
             testData.put("Key", validOrDefault(excelData.get("Key"), DEFAULT_KEY));
             testData.put("Address", validOrDefault(excelData.get("Address"), DEFAULT_ADDRESS));

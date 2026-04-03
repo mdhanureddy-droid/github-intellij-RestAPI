@@ -1,7 +1,7 @@
 package com.restapi.tests.places;
 
 import com.restapi.utils.ConfigReader;
-import com.restapi.utils.Payload;
+import main.java.com.restapi.utils.PayloadReview;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -48,7 +48,7 @@ public class BasicsPutGetUpdate {
     @Test
     public void verifyAddAndUpdatePlace() {
         String placeId = given().spec(requestSpec)
-                .body(Payload.addPlace()).when().post(PLACE_API_BASE + "add/json")
+                .body(PayloadReview.addPlace()).when().post(PLACE_API_BASE + "add/json")
                 .then().spec(responseSpec).body("scope", equalTo("APP"))
                 .header("server", "Apache/2.4.52 (Ubuntu)").extract().path(PARAM_PLACE_ID);
 

@@ -1,6 +1,8 @@
 package com.restapi.tests.jsonparse;
 
-import com.restapi.utils.Payload;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import main.java.com.restapi.utils.PayloadReview;
 import io.restassured.path.json.JsonPath;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
@@ -13,8 +15,9 @@ import java.util.Map;
 public class ComplexJsonParseSingleTest {
 
     @Test
-    public void verifyComplexJsonParsing() {
-        JsonPath jsonPath = new JsonPath(Payload.coursePrice());
+    public void verifyComplexJsonParsing() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonPath jsonPath = new JsonPath(objectMapper.writeValueAsString(PayloadReview.coursePrice()));
         List<Map<String, Object>> courses = jsonPath.getList("courses");
 
         int count = jsonPath.getInt("courses.size()");

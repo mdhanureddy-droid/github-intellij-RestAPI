@@ -1,6 +1,8 @@
 package com.restapi.tests.jsonparse;
 
-import com.restapi.utils.Payload;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import main.java.com.restapi.utils.PayloadReview;
 import io.restassured.path.json.JsonPath;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
@@ -12,8 +14,9 @@ import java.util.stream.IntStream;
 public class SumValidations {
 
     @Test
-    public void sumOfCourses() {
-        JsonPath jsonPath = new JsonPath(Payload.coursePrice());
+    public void sumOfCourses() throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonPath jsonPath = new JsonPath(objectMapper.writeValueAsString(PayloadReview.coursePrice()));
         int count = jsonPath.getInt("courses.size()");
         Assert.assertTrue(count > 0, "Courses count should be greater than 0");
         int sum = IntStream.range(0, count)
