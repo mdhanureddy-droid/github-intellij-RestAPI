@@ -1,7 +1,7 @@
 package com.restapi.tests.library;
 
 import com.restapi.utils.ConfigReader;
-import com.restapi.utils.Payload;
+import main.java.com.restapi.utils.PayloadReview;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +25,7 @@ public class DynamicJsonParametarization {
     @Test(dataProvider = "BooksData")
     public void addBook(String isbn, String aisle) {
         JsonPath jsonPath = given().log().all().header("Content-Type", "application/json")
-                .body(Payload.addBook(isbn, aisle))
+                .body(PayloadReview.addBook(isbn, aisle))
                 .when()
                 .post("/Library/Addbook.php")
                 .then().log().all().statusCode(200)

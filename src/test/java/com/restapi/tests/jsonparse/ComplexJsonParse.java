@@ -1,6 +1,8 @@
 package com.restapi.tests.jsonparse;
 
-import com.restapi.utils.Payload;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import main.java.com.restapi.utils.PayloadReview;
 import io.restassured.path.json.JsonPath;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
@@ -13,12 +15,14 @@ import java.util.Map;
 @Log4j2
 public class ComplexJsonParse {
 
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
     private JsonPath jsonPath;
     private List<Map<String, Object>> courses;
 
     @BeforeClass
-    public void setup() {
-        jsonPath = new JsonPath(Payload.coursePrice());
+    public void setup() throws JsonProcessingException {
+        jsonPath = new JsonPath(objectMapper.writeValueAsString(PayloadReview.coursePrice()));
         courses = jsonPath.getList("courses");
     }
 

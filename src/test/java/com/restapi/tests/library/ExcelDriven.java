@@ -1,7 +1,7 @@
 package com.restapi.tests.library;
 
 import com.restapi.utils.ConfigReader;
-import com.restapi.utils.ExcelDataReader;
+import main.java.com.restapi.utils.ExcelDataReaderReview;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import lombok.extern.log4j.Log4j2;
@@ -48,7 +48,7 @@ public class ExcelDriven {
 
     @DataProvider(name = "BooksData")
     public Object[][] getData() throws IOException {
-        ExcelDataReader d = new ExcelDataReader();
+        ExcelDataReaderReview d = new ExcelDataReaderReview();
         ArrayList data = d.getData("RestAddbook", "sample");
         return new Object[][] {
             {data.get(1).toString(), data.get(2).toString(), data.get(3).toString(), data.get(4).toString()}

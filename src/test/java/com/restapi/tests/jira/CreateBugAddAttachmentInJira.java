@@ -1,7 +1,7 @@
 package com.restapi.tests.jira;
 
 import com.restapi.utils.ConfigReader;
-import com.restapi.utils.Payload;
+import main.java.com.restapi.utils.PayloadReview;
 import io.restassured.RestAssured;
 import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
@@ -31,7 +31,7 @@ public class CreateBugAddAttachmentInJira {
         String issueId = given()
                 .header("Content-Type", "application/json")
                 .header("Authorization", "Basic " + authToken)
-                .body(Payload.createBug())
+                .body(PayloadReview.createBug())
                 .log().all()
                 .post("rest/api/3/issue").then().log().all().assertThat().statusCode(201).contentType("application/json")
                 .extract().response().jsonPath().getString("id");

@@ -5,7 +5,7 @@ import com.restapi.pojo.LoginResponse;
 import com.restapi.pojo.OrderDetail;
 import com.restapi.pojo.Orders;
 import com.restapi.utils.ConfigReader;
-import com.restapi.utils.ExcelDataReader;
+import main.java.com.restapi.utils.ExcelDataReaderReview;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -34,7 +34,7 @@ public class ECommerceAPITest {
         String userId = loginResponse.getUserId();
         logger.info("Token: {}, UserId: {}", token, userId);
 
-        Map<String, String> testData = new ExcelDataReader().getDataAsMap("EcomOrder", "testdata");
+        Map<String, String> testData = new ExcelDataReaderReview().getDataAsMap("EcomOrder", "testdata");
 
         String productId = addProduct(token, userId, testData);
         logger.info("Product ID: {}", productId);
